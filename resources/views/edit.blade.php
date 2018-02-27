@@ -5,6 +5,16 @@
 <div class="container">
   <form method="post" action="{{action('CRUDController@update', $id)}}">
     <div class="form-group row">
+      <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Author</label>
+      <div class="col-sm-10">
+            <select class="form-control" name="author_id">
+                @foreach($authors as $author)
+                <option value="{{$author['id']}}" {{$crud->author_id == $author['id'] ? 'selected="selected"' : ''}}>{{$author['author']}}</option>
+                @endforeach
+            </select>
+      </div>
+    </div>
+    <div class="form-group row">
       {{csrf_field()}}
        <input name="_method" type="hidden" value="PATCH">
       <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Title</label>

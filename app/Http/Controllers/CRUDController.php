@@ -70,8 +70,9 @@ class CRUDController extends Controller
     public function edit($id)
     {
         $crud = Crud::find($id);
+        $authors = author::all()->toArray();
         
-        return view('edit', compact('crud','id'));
+        return view('edit', compact('crud','id','authors'));
     }
 
     /**
@@ -84,6 +85,7 @@ class CRUDController extends Controller
     public function update(Request $request, $id)
     {
         $crud = Crud::find($id);
+        $crud->author_id = $request->get('author_id');
         $crud->title = $request->get('title');
         $crud->post = $request->get('post');
         $crud->save();
